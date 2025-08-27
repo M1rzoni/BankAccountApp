@@ -1,3 +1,5 @@
+using System.Drawing.Imaging;
+
 namespace BankAccountApp
 {
     public partial class Form1 : Form
@@ -8,33 +10,54 @@ namespace BankAccountApp
         {
             InitializeComponent();
 
-   
+
             BankAccounstGrid.DataSource = BankAccounts;
         }
 
-       
+
 
         private void CreateAccountBtn_Click(object sender, EventArgs e)
         {
-            
-             if (string.IsNullOrEmpty(OwnerTxt.Text))
-             return;
 
-             BankAccount bankAccount = new BankAccount(OwnerTxt.Text);
-             BankAccounts.Add(bankAccount);
+            if (string.IsNullOrEmpty(OwnerTxt.Text))
+                return;
+
+            BankAccount bankAccount = new BankAccount(OwnerTxt.Text);
+            BankAccounts.Add(bankAccount);
 
             RefresGrid();
 
             OwnerTxt.Text = "";
-            
 
-           
         }
 
         private void RefresGrid()
         {
             BankAccounstGrid.DataSource = null;
             BankAccounstGrid.DataSource = BankAccounts;
+        }
+
+        private void DepositBtn_Click(object sender, EventArgs e)
+        {
+
+            if(BankAccounstGrid.SelectedRows.Count == 1 && AmountNum.Value > 0)
+            {
+                BankAccount selectedBankAccount = BankAccounstGrid.SelectedRows[0].DataBoundItem as BankAccount;
+
+                selectedBankAccount.Balance += AmountNum.Value;
+
+                RefresGrid();
+
+                AmountNum.Value = 0;
+               
+
+            }
+           
+        }
+
+        private void Form1_Load(object sender, EventArgs e)
+        {
+
         }
     }
 }

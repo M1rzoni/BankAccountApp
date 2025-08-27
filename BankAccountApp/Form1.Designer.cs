@@ -107,6 +107,7 @@
             DepositBtn.TabIndex = 6;
             DepositBtn.Text = "Deposit";
             DepositBtn.UseVisualStyleBackColor = true;
+            DepositBtn.Click += DepositBtn_Click;
             // 
             // CreateAccountBtn
             // 
@@ -134,6 +135,7 @@
             Controls.Add(label1);
             Name = "Form1";
             Text = "Form1";
+            Load += Form1_Load;
             ((System.ComponentModel.ISupportInitialize)AmountNum).EndInit();
             ((System.ComponentModel.ISupportInitialize)BankAccounstGrid).EndInit();
             ResumeLayout(false);
