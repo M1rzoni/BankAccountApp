@@ -50,6 +50,7 @@
             WithdrawBtn.TabIndex = 7;
             WithdrawBtn.Text = "Withdraw";
             WithdrawBtn.UseVisualStyleBackColor = true;
+            WithdrawBtn.Click += WithdrawBtn_Click;
             // 
             // label1
             // 
@@ -86,6 +87,8 @@
             // AmountNum
             // 
             AmountNum.Location = new Point(87, 303);
+            AmountNum.Maximum = new decimal(new int[] { 999999, 0, 0, 0 });
+            AmountNum.Minimum = new decimal(new int[] { 99999, 0, 0, int.MinValue });
             AmountNum.Name = "AmountNum";
             AmountNum.Size = new Size(145, 23);
             AmountNum.TabIndex = 4;

@@ -40,7 +40,7 @@ namespace BankAccountApp
         private void DepositBtn_Click(object sender, EventArgs e)
         {
 
-            if(BankAccounstGrid.SelectedRows.Count == 1 && AmountNum.Value > 0)
+            if (BankAccounstGrid.SelectedRows.Count == 1 && AmountNum.Value > 0)
             {
                 BankAccount selectedBankAccount = BankAccounstGrid.SelectedRows[0].DataBoundItem as BankAccount;
 
@@ -49,10 +49,39 @@ namespace BankAccountApp
                 RefresGrid();
 
                 AmountNum.Value = 0;
-               
+
 
             }
-           
+
+        }
+
+        
+
+        private void WithdrawBtn_Click(object sender, EventArgs e)
+        {
+
+            if (BankAccounstGrid.SelectedRows.Count == 1 && AmountNum.Value > 0 )
+            {
+                BankAccount selectedBankAccount = BankAccounstGrid.SelectedRows[0].DataBoundItem as BankAccount;
+
+
+                if(AmountNum.Value <= selectedBankAccount.Balance)
+                {
+                    selectedBankAccount.Balance -= AmountNum.Value;
+
+                    RefresGrid();
+
+                    AmountNum.Value = 0;
+
+                }
+                else
+                {
+                    MessageBox.Show("U don't have enough money");
+                }
+                
+
+            }
+
         }
 
         private void Form1_Load(object sender, EventArgs e)
