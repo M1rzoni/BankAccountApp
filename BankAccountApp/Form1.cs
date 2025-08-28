@@ -40,49 +40,43 @@ namespace BankAccountApp
         private void DepositBtn_Click(object sender, EventArgs e)
         {
 
-            if (BankAccounstGrid.SelectedRows.Count == 1 && AmountNum.Value > 0)
+            if (BankAccounstGrid.SelectedRows.Count == 1)
             {
                 BankAccount selectedBankAccount = BankAccounstGrid.SelectedRows[0].DataBoundItem as BankAccount;
 
-                selectedBankAccount.Balance += AmountNum.Value;
+              string message =  selectedBankAccount.Deposite(AmountNum.Value);
 
                 RefresGrid();
 
                 AmountNum.Value = 0;
 
+                MessageBox.Show(message);
+
 
             }
 
         }
-
-        
-
+         
         private void WithdrawBtn_Click(object sender, EventArgs e)
         {
 
-            if (BankAccounstGrid.SelectedRows.Count == 1 && AmountNum.Value > 0 )
+            if (BankAccounstGrid.SelectedRows.Count == 1)
             {
                 BankAccount selectedBankAccount = BankAccounstGrid.SelectedRows[0].DataBoundItem as BankAccount;
 
-
-                if(AmountNum.Value <= selectedBankAccount.Balance)
-                {
-                    selectedBankAccount.Balance -= AmountNum.Value;
+                    string message = selectedBankAccount.Withdraw(AmountNum.Value);
 
                     RefresGrid();
 
                     AmountNum.Value = 0;
 
-                }
-                else
-                {
-                    MessageBox.Show("U don't have enough money");
-                }
-                
+                    MessageBox.Show(message);
 
+                }
+               
+               
             }
 
-        }
 
         private void Form1_Load(object sender, EventArgs e)
         {
